@@ -1,0 +1,36 @@
+.color-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+.green { background-color: green; }
+.orange { background-color: orange; }
+.red { background-color: red; }
+.strength-text {
+    display: inline-block;
+    vertical-align: middle;
+}
+.strong { color: green; }
+.medium { color: orange; }
+.weak { color: red; }
+.password-input {
+    position: relative;
+}
+
+.password-input input {
+    padding-right: 30px;
+}
+
+.password-input button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 30px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivi de livraison</title>
+</head>
+<body>
+    <h1>Informations sur la livraison</h1>
+    <ul>
+        <li>ID de livraison: {{.ID}}</li>
+        <li>Expéditeur: {{.Expediteur}}</li>
+        <li>Destinataire: {{.Destinataire}}</li>
+        <li>Livraison: {{.Livraison}}</li>
+        <li>Status: {{.Status}}</li>
+        <li>Titre du colis: {{.Titre}}</li>
+        <li>Message du colis: {{.Message}}</li>
+        {{ if ne .Image "" }}
+        <li>Image du colis: <img src="data:image/jpeg;base64,{{.Image}}" alt="Image du colis"></li>
+        {{ end }}
+    </ul>
+</body>
+</html>

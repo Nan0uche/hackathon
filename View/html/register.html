@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S'enregistrer</title>
+    <link rel="stylesheet" href="/static/css/reglog.css">
+    <link rel="stylesheet" href="/static/css/register.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Register</h2>
+        {{ if .ErrorMessage }}
+        <p style="color: red;">{{ .ErrorMessage }}</p>
+        {{ end }}
+        <form action="/register" method="post">
+            <div class="form-group">
+                <label for="username" class="label">Username:</label>
+                <input type="text" id="username" name="username" class="input" required>
+            </div>
+            <div class="form-group">
+                <label for="location" class="label">Location:</label>
+                <input type="location" id="location" name="location" class="input" required>
+            </div>
+            <div class="form-group">
+                <label for="email" class="label">Email:</label>
+                <input type="email" id="email" name="email" class="input" required>
+            </div>
+            <div class="form-group">
+                <label for="password" class="label">Password:</label>
+                <div class="password-input">
+                    <input type="password" id="password" name="password" class="input" required>
+                    <button type="button" id="toggle-password" onclick="togglePasswordVisibility()">🙈</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <span id="password-color-indicator" class="color-indicator"></span>
+                <span id="password-strength" class="strength-text"></span>
+            </div>
+            <button type="submit" class="btn">Register</button>
+        </form>
+        <p>Already have an account? <a href="/login">Login</a></p> <!-- Nouvelle ligne pour le lien de connexion -->
+    </div>
+    <script src="/static/js/register.js"></script>
+</body>
+
+</html>

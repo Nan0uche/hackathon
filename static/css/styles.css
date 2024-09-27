@@ -1,0 +1,75 @@
+/* static/styles.css */
+
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles spécifiques à home.html */
+.home-header {
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+.home-header h1 {
+    color: #333;
+}
+
+.home-nav {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.home-nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.home-nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.home-nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.home-nav ul li a:hover {
+    color: #666;
+}
+
+.home-main {
+    padding: 20px;
+}
+
+/* Styles spécifiques à 404.html */
+.error-container {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.error-container h1 {
+    font-size: 48px;
+    color: #e74c3c;
+}
+
+.error-container p {
+    font-size: 24px;
+    color: #333;
+}

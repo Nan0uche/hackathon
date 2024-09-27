@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr-fr" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hermès | Service de livraison, de coursier et d'éxpedition de colis</title>
+    <link rel="stylesheet" href="/static/css/tracking.css">
+</head>
+
+<body>
+    <header>
+        <div class="Hermès-nav">
+            <div class="Wrapper-nav">
+                <a href="/">
+                    <img class="Hermès-logo" src="/static/images/Hermès_logo.png" alt="Page d'accueil Hermès"
+                        style="width: 200px;" />
+                </a>
+                <div class="Dropdown-menu">
+                    <nav id='menu'>
+                        <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+                        <ul>
+                            <li><a href='/expedition'>Expédier</a></li>
+                            <li><a href='/tracking'>Suivi</a></li>
+                            <li><a class='dropdown-arrow'>Support</a>
+                                <ul class='sub-menus'>
+                                    <li><a href='http://'>Espace nouveau client</a></li>
+                                    <li><a href='http://'>Comment expédier</a></li>
+                                    <li><a href='/claim'>Réclamations</a></li>
+                                    <li><a href='/faq'>FAQ</a></li>
+                                    <li><a href='/contactus'>Nous contacter</a></li>
+                                </ul>
+                            </li>
+                            {{ if .IsLoggedIn }}
+                            <li><a class='dropdown-arrow' href='/profil'>{{ .Username }}</a>
+                                <ul class='sub-menus'>
+                                    {{ if .IsAdmin }}
+                                    <li><a href="/dashboard">Dashboard</a></li>
+                                    {{ end }}
+                                    <li><a href="/logout">Déconnexion</a></li>
+                                </ul>
+                            {{ else }}
+                            <li><a class='dropdown-arrow' href='/profil'>Compte</a>
+                                <ul class='sub-menus'>
+                                    <li><a href='/register'>Ouvrir un compte</a></li>
+                                    <li><a href='/login'>Se connecter</a></li>
+                                </ul>
+                            </li>
+                            {{ end }}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <button class="chatBtn">
+        <svg height="1.6em" fill="white" xml:space="preserve" viewBox="0 0 1000 1000" y="0px" x="0px" version="1.1">
+        <path d="M881.1,720.5H434.7L173.3,941V720.5h-54.4C58.8,720.5,10,671.1,10,610.2v-441C10,108.4,58.8,59,118.9,59h762.2C941.2,59,990,108.4,990,169.3v441C990,671.1,941.2,720.5,881.1,720.5L881.1,720.5z M935.6,169.3c0-30.4-24.4-55.2-54.5-55.2H118.9c-30.1,0-54.5,24.7-54.5,55.2v441c0,30.4,24.4,55.1,54.5,55.1h54.4h54.4v110.3l163.3-110.2H500h381.1c30.1,0,54.5-24.7,54.5-55.1V169.3L935.6,169.3z M717.8,444.8c-30.1,0-54.4-24.7-54.4-55.1c0-30.4,24.3-55.2,54.4-55.2c30.1,0,54.5,24.7,54.5,55.2C772.2,420.2,747.8,444.8,717.8,444.8L717.8,444.8z M500,444.8c-30.1,0-54.4-24.7-54.4-55.1c0-30.4,24.3-55.2,54.4-55.2c30.1,0,54.4,24.7,54.4,55.2C554.4,420.2,530.1,444.8,500,444.8L500,444.8z M282.2,444.8c-30.1,0-54.5-24.7-54.5-55.1c0-30.4,24.4-55.2,54.5-55.2c30.1,0,54.4,24.7,54.4,55.2C336.7,420.2,312.3,444.8,282.2,444.8L282.2,444.8z"></path>
+        </svg>
+        <span class="tooltip">Chat</span>
+    </button>
+
+    <main>
+        <section>
+            <h2>Bienvenue, {{ .Username }} !</h2>
+            <p>Vous pouvez ici avoir accès a votre tableau de suivis avancé</p>
+            <div class="grid-container">
+                <section class="layout">
+                    <div><img src="/static/images/delay-icon.svg" alt="Delayed package" class="icon-delayed"/>Delayed</div>
+                    <div><img src="/static/images/exception-20px-svgrepo-com.svg" alt="Exceptions" class="icon-exception"/>Exceptions</div>
+                    <div><img src="/static/images/delivery-on-time-svgrepo-com.svg" alt="Early delivery" class="icon-early"/>Early</div>
+                    <div><img src="/static/images/delivery-on-time-svgrepo-com.svg" alt="Delivered on time" class="icon-ontime"/>On time</div>
+                    <div><img src="/static/images/check-symbol-4794.svg" alt="Delivered package" class="icon-delivered"/>Delivered</div>
+                </section>
+            </div>
+            <h2>Colis envoyé : </h2>
+			<ul>
+				{{ range .IDExped }}
+				<li><a href="/suivi?id={{ . }}">{{ . }}</a></li>
+				{{ end }}
+			</ul>
+            <h2>Colis reçu : </h2>
+			<ul>
+				{{ range .IDRecu }}
+				<li><a href="/suivi?id={{ . }}">{{ . }}</a></li>
+				{{ end }}
+			</ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-left">
+            <h4>Contact</h4>
+            <ul class="listIcon">
+            <li class="icon-content">
+                <a class="link" data-social="github" aria-label="Github" href="https://github.com/BjornHgn?tab=repositories">
+                <svg aria-hidden="true" class="octicon octicon-mark-github" height="24" version="1.1" viewBox="0 0 16 16"
+                    width="24">
+                    <path fill="currentColor"
+                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z">
+                    </path>
+                </svg>
+                </a>
+                <div class="tooltip">Github</div>
+            </li>
+    
+            <li class="icon-content">
+                <a class="link" data-social="gitea" aria-label="GiTea" href="https://ytrack.learn.ynov.com/git/plionel">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Gitea" role="img" viewBox="0 0 33 30" version="1.1"
+                    height="24" width="24">
+                    <path fill="currentColor"
+                    d="M5.583 7.229c-2.464-0.005-5.755 1.557-5.573 5.479 0.281 6.125 6.557 6.693 9.068 6.745 0.271 1.146 3.224 5.109 5.411 5.318h9.573c5.74-0.38 10.036-17.365 6.854-17.427-5.271 0.25-8.396 0.375-11.073 0.396v5.297l-0.839-0.365-0.005-4.932c-3.073 0-5.781-0.141-10.917-0.396-0.646-0.005-1.542-0.115-2.5-0.115zM5.927 9.396h0.297c0.349 3.141 0.917 4.974 2.068 7.781-2.938-0.349-5.432-1.198-5.891-4.38-0.24-1.646 0.563-3.365 3.526-3.401zM17.339 12.479c0.198 0.005 0.406 0.042 0.594 0.13l1 0.432-0.714 1.302c-0.109 0-0.219 0.016-0.323 0.052-0.464 0.151-0.708 0.604-0.542 1.021 0.036 0.083 0.089 0.161 0.151 0.229l-1.234 2.25c-0.099 0-0.203 0.016-0.297 0.052-0.464 0.146-0.708 0.604-0.542 1.016 0.172 0.417 0.682 1.151 0.479 0.464-0.146 0.703-0.604 0.536-1.021-0.047-0.109-0.115-0.208-0.208-0.292l1.203-2.188c0.13 0.010 0.26 0 0.391-0.042 0.104-0.031 0.198-0.083 0.281-0.151 0.464 0.198 0.844 0.354 1.12 0.49 0.406 0.203 0.552 0.339 0.599 0.49 0.042 0.146-0.005 0.427-0.24 0.922-0.172 0.37-0.458 0.896-0.797 1.51-0.115 0-.229 0.016-0.333 0.052-0.469 0.151-0.708 0.604-0.542 1.021 0.167 0.411 0.682 0.625 1.146 0.479 0.469-0.151 0.708-0.604 0.542-1.021-0.042-0.099-0.104-0.193-0.182-0.271 0.333-0.609 0.62-1.135 0.807-1.526 0.25-0.536 0.38-0.938 0.266-1.323s-0.469-0.635-0.932-0.865c-0.307-0.151-0.693-0.313-1.146-0.505 0.005-0.109-0.010-0.214-0.052-0.318s-0.109-0.198-0.193-0.281l0.703-1.281 3.901 1.682c0.703 0.307 0.995 1.057 0.651 1.682l-2.682 4.906c-0.339 0.625-1.182 0.885-1.885 0.578l-5.516-2.38c-0.703-0.307-0.995-1.057-0.656-1.682l2.682-4.906c0.234-0.432 0.708-0.688 1.208-0.708h0.083z">
+                    </path>
+                </svg>
+                </a>
+                <div class="tooltip">GiTea</div>
+            </li>
+    
+            <li class="icon-content">
+                <a class="link" data-social="youtube" aria-label="YouTube"
+                href="https://www.youtube.com/watch?v=vXYVfk7agqU&t">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 180">
+                    <path fill="currentColor"
+                    d="M250.346 28.075A32.18 32.18 0 0 0 227.69 5.418C207.824 0 127.87 0 127.87 0S47.912.164 28.046 5.582A32.18 32.18 0 0 0 5.39 28.24c-6.009 35.298-8.34 89.084.165 122.97a32.18 32.18 0 0 0 22.656 22.657c19.866 5.418 99.822 5.418 99.822 5.418s79.955 0 99.82-5.418a32.18 32.18 0 0 0 22.657-22.657c6.338-35.348 8.291-89.1-.164-123.134" />
+                    <path fill="#FFF" d="m102.421 128.06l66.328-38.418l-66.328-38.418z" />
+                </svg>
+                </a>
+                <div class="tooltip">YouTube</div>
+            </li>
+            </ul>
+            <p>© 2024 Hermès, LLC</p>
+        </div>
+    </footer>
+</body>
+</html>

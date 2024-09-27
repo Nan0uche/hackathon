@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hermès | Page Administrateur</title>
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome Admin User</h1>
+    </div>
+    <div class="sidebar">
+        <ul>
+            <li><a href="#" onclick="loadContent('dashboard_1')">Dashboard</a></li>
+            <li><a href="#" onclick="loadContent('package-management')">Package Management</a></li>
+            <li><a href="#" onclick="loadContent('user-management')">Users Management</a></li>
+            <li><a href="#" onclick="loadContent('driver-management')">Driver Management</a></li>
+        </ul>
+    </div>
+    <div class="main-content" id="main-content">
+        <!-- Main content goes here -->
+    </div>
+
+    <script>
+        function loadContent(content) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("main-content").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "/html/" + content + ".html", true); // Adjusted URL here
+            xhttp.send();
+        }
+    </script>
+</body>
+</html>

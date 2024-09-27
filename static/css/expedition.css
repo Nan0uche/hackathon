@@ -1,0 +1,41 @@
+body {
+    position: relative;
+}
+
+#suggestions,
+#suggestions-arrivee {
+    display: none;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    z-index: 9999;
+    /* Valeur élevée pour s'assurer qu'elle s'affiche au-dessus du reste */
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    max-height: 200px;
+    overflow-y: auto;
+
+}
+
+#suggestions img,
+#suggestions-arrivee img {
+    width: 24px;
+    /* Taille du drapeau */
+    height: auto;
+    margin-right: 5px;
+}
+
+#suggestions a,
+#suggestions-arrivee a {
+    display: flex;
+    /* Utilisation de flexbox pour aligner l'image et le texte */
+    align-items: center;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #333;
+}
+
+#suggestions a:hover,
+#suggestions-arrivee a:hover {
+    background-color: #ddd;
+}
